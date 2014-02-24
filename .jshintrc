@@ -19,6 +19,7 @@
   "predef" : [
     "yOSON",
     "$",
+    "jQuery",
     "_",
     "log",
     "console",
@@ -38,7 +39,11 @@
     "saveCookieEstado",
     "InfoBox",
     "NumberFormat",
-    "MarkerClusterer"
+    "MarkerClusterer",
+    "style",
+    "bottom",
+    "height",
+    "width"
   ],
   "eqeqeq" : false, // esto es el casi el diablo, hay que ponerle false
   "eqnull" : false, // esto es el casi el diablo, hay que ponerle false

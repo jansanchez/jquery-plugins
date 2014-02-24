@@ -11,17 +11,17 @@ requires:
 	var methods = {
 		init : function( opts ) {
 			var debug = 'none';
-			if (opts.debug==true){ debug = 'block' };
+			if (opts.debug===true){ debug = 'block'; }
 			opts.id = 'frm_' + Math.floor(Math.random() * 99999);
 			var d = $('<div/>').html('<iframe style="display:'+debug+'" src="about:blank" id="'+opts.id+'" name="'+opts.id+'" onload="$.fn.iframeUp(\'load\',\''+opts.id+'\')" onunload="$.fn.iframeUp(\'unload\',\''+opts.id+'\')"></iframe>');
 
 			$('body').append(d);
 
 			var ifrm = document.getElementById(opts.id);
-			if (opts && typeof(opts.onSuccess) == 'function') {
+			if (opts && typeof(opts.onSuccess) === 'function') {
 				ifrm.onSuccess = opts.onSuccess;
 			}
-			if (opts && typeof(opts.onComplete) == 'function') {
+			if (opts && typeof(opts.onComplete) === 'function') {
 				ifrm.onComplete = opts.onComplete;
 			}
 			return opts.id;
@@ -58,42 +58,43 @@ requires:
 			$.fn.iframeUp('form', opts.frm, $.fn.iframeUp('init', opts));
 
 
-			if (opts && typeof(opts.beforeSend) == 'function') {
+			if (opts && typeof(opts.beforeSend) === 'function') {
 				opts.beforeSend(opts);
 			}
 
-			if (opts.submit==true) {
+			if (opts.submit===true) {
 				document.getElementById(opts.frm).submit();
 			}
 
-			if (opts && typeof(opts.afterSend) == 'function') {
+			if (opts && typeof(opts.afterSend) === 'function') {
 				opts.afterSend(opts);
 			}
-			if (opts.loader==true) {
-				if (opts && typeof(opts.loading) == 'function') {
+			if (opts.loader===true) {
+				if (opts && typeof(opts.loading) === 'function') {
 					opts.loading(opts);
 				}
-			};
+			}
 
 		},
 		load : function(id) {
 
 			var ifrm = document.getElementById(id) || $('#'+id);
+			var doc = null;
 
 			if (ifrm.contentDocument) {
-				var doc = ifrm.contentDocument;
+				doc = ifrm.contentDocument;
 			} else if (ifrm.contentWindow) {
-				var doc = ifrm.contentWindow.document;
+				doc = ifrm.contentWindow.document;
 			} else {
-			 	var doc = window.frames[id].document;
+				doc = window.frames[id].document;
 			}
-			if (doc.location.href == "about:blank") {
+			if (doc.location.href === "about:blank") {
 				return;
 			}
-			if (typeof(ifrm.onSuccess) == 'function') {
+			if (typeof(ifrm.onSuccess) === 'function') {
 				ifrm.onSuccess(doc.body.innerHTML, ifrm, id);
 			}
-			if (typeof(ifrm.onComplete) == 'function'){
+			if (typeof(ifrm.onComplete) === 'function'){
 				try{
 					ifrm.onComplete(doc.body.innerHTML, ifrm);
 				}catch(err){
@@ -113,7 +114,7 @@ requires:
       return methods.init.apply( this, arguments );
     } else {
       $.error( 'Method ' +  method + ' does not exist on jQuery.iframeUp' );
-    };
+    }
   };
 
 })(jQuery);

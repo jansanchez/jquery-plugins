@@ -108,7 +108,7 @@
         maxlevel = 3,
         level = 0;
 
-        for (i=0; i<level; i++){
+        for (var i=0; i<level; i++){
             spaces += '&nbsp;&nbsp;&nbsp;&nbsp;';
         }
 
@@ -117,7 +117,8 @@
                 if(newMsg[ele].toString().indexOf("return new e.fn.init(a, b, h);")>=0 || newMsg[ele].toString().indexOf("function()")>=0 || newMsg[ele].toString().indexOf("jquery")>=0 || newMsg[ele].toString().indexOf("constructor")>=0){
                     txtEdited = txtEdited.replace(spaces+'<strong>context</strong>:<br>','');
                     txtEdited = txtEdited.replace('<br>'+spaces+spaces+'[object HTMLDocument]','');
-                    return newMsg=newMsg + txtEdited;
+                    newMsg = newMsg + txtEdited;
+                    return newMsg;
                 }
                 txtEdited += '<br>'+ spaces +'<strong>'+ ele + '</strong>:<br>'+spaces;
 
@@ -147,8 +148,11 @@
         css = _this.btnClose+' { position: relative; top: -2px; right: 0; line-height: 20px; padding: 0; cursor: pointer; background: transparent; border: 0; color: #000000; float: right; font-size: 18px; font-weight: bold; opacity: 0.3; text-shadow: 0 1px 0 #FFFFFF; }';
             css+=_this.btnClose+':hover { opacity: 0.6; }';
 
-        head = document.getElementsByTagName('head')[0],
+        head = document.getElementsByTagName('head')[0];
+        
+        var style = null;
         style = document.createElement('style');
+
         style.type = 'text/css';
 
         if (style.styleSheet){
@@ -166,9 +170,9 @@
                 style+= key + ':' + _this.settings.commonStyle[key]+';';
             }
         }
-        for (var key in _this.settings.themes[_this.settings.type]) {
-            if (_this.settings.themes[_this.settings.type].hasOwnProperty(key)) {
-                style+= key + ':' + _this.settings.themes[_this.settings.type][key]+';';
+        for (var key2 in _this.settings.themes[_this.settings.type]) {
+            if (_this.settings.themes[_this.settings.type].hasOwnProperty(key2)) {
+                style+= key2 + ':' + _this.settings.themes[_this.settings.type][key2]+';';
             }
         }
 
@@ -208,19 +212,23 @@
         _this.$el = $(_this.el);
         $('body').append(_this.$el);
 
+        var bottom = 0, height = 0;
+
         for (var i = 0; i < arrId.length; i++) {
             var $element = $('#'+this.prefix+arrId[i]);
             if(i>0){
-                $element.css('bottom', (bottom+(height-1))+'px');
                 bottom = parseInt($element.css('bottom'));
                 height = parseInt($element.outerHeight());
+                $element.css('bottom', (bottom+(height-1))+'px');
             }else{
                 bottom = parseInt($element.css('bottom'));
                 height = parseInt($element.outerHeight());
             }
         }
 
-        _this.settings.callback["load"]&&this.settings.callback["load"](_this);
+        if (_this.settings.callback["load"]) {
+            this.settings.callback["load"](_this);
+        }
 
         if(_this.settings.lifetime!==0){
             setTimeout(function(){
@@ -234,7 +242,7 @@
         if (arrId.length>0) {
             for (var i = 0; i < arrId.length; i++) {
                 $elem = $('#'+this.prefix+arrId[i]);
-                if ($elem!=null) {
+                if ($elem!==null) {
                     if($elem.attr('data-type')===_this.settings.type){
                         if (_this.settings.msg==$elem.text().substring(0,$elem.text().length-1)) {
                             _this.isRepeat=1;
