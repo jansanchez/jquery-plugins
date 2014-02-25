@@ -1,6 +1,6 @@
 /*  Echo v0.4 - jQuery Javascript Echo
     (c) 2013 - @jansanchez
-    License: http://www.opensource.org/licenses/mit-license.php
+License: http://www.opensource.org/licenses/mit-license.php
 */
 
 (function($){
@@ -136,10 +136,10 @@
         var _this = this,
         head = null,
         css = _this.btnClose+' { position: relative; top: -2px; right: 0; line-height: 20px; padding: 0; cursor: pointer; background: transparent; border: 0; color: #000000; float: right; font-size: 18px; font-weight: bold; opacity: 0.3; text-shadow: 0 1px 0 #FFFFFF; }';
-            css+=_this.btnClose+':hover { opacity: 0.6; }';
+        css+=_this.btnClose+':hover { opacity: 0.6; }';
 
         head = document.getElementsByTagName('head')[0];
-        
+
         var style = null;
         style = document.createElement('style');
 
@@ -184,8 +184,8 @@
 
         _this.button = document.createElement('button');
         /*
-        _this.button.setAttribute('style', 'position: relative;top: -2px;right: 0;line-height: 20px;padding: 0;cursor: pointer;background: transparent;border: 0;color: #000000;float: right;font-size: 18px;font-weight: bold;opacity: 0.3;text-shadow: 0 1px 0 #FFFFFF;');
-        */
+           _this.button.setAttribute('style', 'position: relative;top: -2px;right: 0;line-height: 20px;padding: 0;cursor: pointer;background: transparent;border: 0;color: #000000;float: right;font-size: 18px;font-weight: bold;opacity: 0.3;text-shadow: 0 1px 0 #FFFFFF;');
+           */
         _this.button.setAttribute('class', this.btnClose.substring(1,this.btnClose.length));
         _this.button.setAttribute('title', 'Cerrar');
         _this.button.innerHTML = 'x';
