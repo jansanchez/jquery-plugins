@@ -21,3 +21,5 @@ License: http://www.opensource.org/licenses/mit-license.php
         return
     return
 ) jQuery
+
+#http://www.websanova.com/blog/jquery/10-coding-tips-to-write-superior-jquery-plugins#.Uw0c53WSzOg
