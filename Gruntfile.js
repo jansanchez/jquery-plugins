@@ -21,14 +21,27 @@ module.exports = function(grunt) {
         jshintrc : '.jshintrc'
       },
       js: ['js/*.js']
+    },
+    //watch
+    /*echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p*/
+    watch: {
+      coffee: {
+        files: 'coffee/*.coffee',
+        tasks: ['coffee', 'jshint'],
+        options: {
+          interrupt: true
+        }
+      }
     }
   });
 
   //loadNpmTasks
+  grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-coffee');
   grunt.loadNpmTasks('grunt-contrib-jshint');
 
   // Run Default task(s).
   grunt.registerTask('default', ['coffee', 'jshint']);
+
 
 };
