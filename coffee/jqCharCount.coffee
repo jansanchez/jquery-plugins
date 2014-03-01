@@ -1,11 +1,11 @@
 ###*
-withElement v0.1.0 - jQuery plugin withElement
+charCount v0.1.0 - jQuery plugin charCount
 (c) 2014 - @jansanchez
 License: http://www.opensource.org/licenses/mit-license.php
 ###
 
 (($) ->
-    withElement = (options) ->
+    charCount = (options) ->
         console.log options
         return
     withElement::rand = (p1) ->

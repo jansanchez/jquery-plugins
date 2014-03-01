@@ -31,14 +31,37 @@ module.exports = function(grunt) {
         options: {
           interrupt: true
         }
+      },
+      jade: {
+        files: ['jade/*.jade'],
+        tasks: ['jade'],
+        options: {
+          interrupt: true
+        }
+      },
+    },
+    //jade
+    jade: {
+      compile: {
+        options: {
+          data: {}
+        },
+        files: [{
+          expand: true,
+          cwd: 'jade/',
+          src: [ '**/*.jade', '!config/*.jade', '!layout/*.jade', '!render/*.jade'],
+          dest: 'html',
+          ext: '.html'
+        }]
       }
-    }
+    },
   });
 
   //loadNpmTasks
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-coffee');
   grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-jade');
 
   // Run Default task(s).
   grunt.registerTask('default', ['coffee', 'jshint']);
