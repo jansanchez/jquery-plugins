@@ -9,6 +9,7 @@
     "grunt-contrib-coffee": "~0.8.2",
     "grunt-contrib-jshint": "~0.8.0",
     "grunt-contrib-watch": "~0.4.3",
-    "grunt-contrib-jade": "~0.9.1"
+    "grunt-contrib-jade": "~0.9.1",
+    "grunt-contrib-stylus": "~0.13.1"
   }
 }
