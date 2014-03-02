@@ -5,15 +5,25 @@ License: http://www.opensource.org/licenses/mit-license.php
 ###
 
 (($) ->
+    defaultSettings = {
+    }
     charCount = (options) ->
         console.log options
+        this.options = options
+        @rand()
         return
-    charCount::rand = (p1) ->
-        console.log p1
+    charCount::rand = () ->
+        console.log 'ejecutando random: ' + @options.$el.val()
         return
     $.fn.charCount = (params) ->
         if (typeof params is "undefined" or params.constructor is Object)
-            new charCount(params)
+            self = this
+            return self.each( ()->
+                everyElement = $(this)
+                #console.log(everyElement)
+                settings = $.extend({$el: everyElement}, defaultSettings, params || {})
+                return new charCount(settings)
+            )
         else
             $.error "El parámetro proporcionado " + params + " esta mal declarado o no es un objeto"
         return
