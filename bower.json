@@ -1,0 +1,25 @@
+{
+  "name": "jquery-plugins",
+  "version": "0.0.1",
+  "authors": [
+    "Jan Sanchez <joejansanchez@gmail.com>"
+  ],
+  "description": "Our jquery plugins",
+  "main": "index.html",
+  "keywords": [
+    "jquery plugins",
+    "bower"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/js/libs/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~1.11.0"
+  }
+}
