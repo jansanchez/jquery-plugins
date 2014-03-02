@@ -1,10 +1,14 @@
 doctype html
 html
-    head
-        title jqCharCount
-        link(href="../public/css/jqCharCount.css", rel="stylesheet", type="text/css")
-    body
-        form#frmStep2
-            label#charCount tiene 150 de 300 caracteres
-            textarea#txaMessage
-            label#wordCount esta usando 10 de 18 palabras
+	head
+		meta(charset="utf-8")
+		title jqCharCount
+		link(href="../public/css/jqCharCount.css", rel="stylesheet", type="text/css")
+	body
+		form#frmStep2
+			h2 Formulario
+			hr
+			p#charCount tiene 150 de 300 caracteres.
+			textarea#txaMessage(placeholder="Escriba aquí")
+			p#wordCount Estás usando 10 de 18 palabras.
+			button Enviar
