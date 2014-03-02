@@ -1,6 +1,7 @@
 body{background:#333}
 p{-webkit-margin-after:.5em;-webkit-margin-before:.5em}
-textarea{font-family:'arial','sans-serif';font-size:.9em}
+hr{margin:0 0 15px 0}
+textarea{font-family:'arial','sans-serif';font-size:.85em}
 button{padding:5px}
-#frmStep2{background:#dc143c;color:#fff;font-family:'arial','sans-serif';font-size:.9em;margin:0 auto;padding:5px 5px 15px 5px;width:310px}
-#txaMessage{width:98%;min-height:100px}
+#frmStep2{background:#dc143c;color:#fff;font-family:'arial','sans-serif';font-size:.85em;margin:0 auto;padding:5px 5px 15px 5px;width:310px}
+#txaMessage{width:98%;min-height:70px}
