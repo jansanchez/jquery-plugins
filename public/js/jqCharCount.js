@@ -9,12 +9,12 @@ License: http://www.opensource.org/licenses/mit-license.php
   charCount = function(options) {
     console.log(options);
   };
-  withElement.prototype.rand = function(p1) {
+  charCount.prototype.rand = function(p1) {
     console.log(p1);
   };
-  $.fn.withElement = function(params) {
+  $.fn.charCount = function(params) {
     if (typeof params === "undefined" || params.constructor === Object) {
-      new withElement(params);
+      new charCount(params);
     } else {
       $.error("El parámetro proporcionado " + params + " esta mal declarado o no es un objeto");
     }

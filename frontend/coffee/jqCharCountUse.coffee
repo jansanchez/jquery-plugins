@@ -1,4 +1,4 @@
-$(document).on(ready, () ->
+$(document).on('ready', () ->
     console.log('dom cargado!')
 )
 

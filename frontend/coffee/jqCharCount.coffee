@@ -8,12 +8,12 @@ License: http://www.opensource.org/licenses/mit-license.php
     charCount = (options) ->
         console.log options
         return
-    withElement::rand = (p1) ->
+    charCount::rand = (p1) ->
         console.log p1
         return
-    $.fn.withElement = (params) ->
+    $.fn.charCount = (params) ->
         if (typeof params is "undefined" or params.constructor is Object)
-            new withElement(params)
+            new charCount(params)
         else
             $.error "El parámetro proporcionado " + params + " esta mal declarado o no es un objeto"
         return

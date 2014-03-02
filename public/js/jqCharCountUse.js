@@ -1,3 +1,3 @@
-$(document).on(ready, function() {
+$(document).on('ready', function() {
   return console.log('dom cargado!');
 });
