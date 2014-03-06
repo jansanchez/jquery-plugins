@@ -36,7 +36,8 @@ module.exports = function(grunt) {
         files: ['frontend/jade/*.jade'],
         tasks: ['jade'],
         options: {
-          interrupt: true
+          interrupt: true,
+          pretty: true
         }
       },
       stylus: {
@@ -51,6 +52,7 @@ module.exports = function(grunt) {
     jade: {
       compile: {
         options: {
+          pretty: true,
           data: {}
         },
         files: [{
