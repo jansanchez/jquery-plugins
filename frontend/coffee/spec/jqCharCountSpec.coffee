@@ -9,5 +9,8 @@ describe "charCount", () ->
 	it "debe estar habilitado el textArea", () ->
 		expect($txaMessage).not.toBeDisabled()
 		return
+	it "debe tener el texto abc dentro", () ->
+		expect($txaMessage).toHaveValue('abc')
+		return
 
 	return

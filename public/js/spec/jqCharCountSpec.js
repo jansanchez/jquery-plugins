@@ -10,4 +10,7 @@ describe("charCount", function() {
   it("debe estar habilitado el textArea", function() {
     expect($txaMessage).not.toBeDisabled();
   });
+  it("debe tener el texto abc dentro", function() {
+    expect($txaMessage).toHaveValue('abc');
+  });
 });
