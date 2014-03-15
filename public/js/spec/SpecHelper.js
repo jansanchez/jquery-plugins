@@ -13,5 +13,3 @@ beforeEach(function() {
     }
   });
 });
-
-jasmine.getFixtures().fixturesPath = '../../html/fixtures';

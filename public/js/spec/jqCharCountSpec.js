@@ -1,6 +1,6 @@
 describe("charCount", function() {
   beforeEach(function() {});
-  return it("should be able tru", function() {
+  it("should be true", function() {
     expect(true).toBe(true);
   });
 });
