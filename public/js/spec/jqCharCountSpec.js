@@ -1,11 +1,13 @@
 describe("charCount", function() {
+  var $form, $txaMessage;
+  $form = null;
+  $txaMessage = null;
   beforeEach(function() {
     loadFixtures('jqCharCountContent.html');
+    $form = $('#frmStep2');
+    $txaMessage = $('#txaMessage');
   });
-  it("should be true", function() {
-    expect(true).toBe(true);
-  });
-  it("should be false", function() {
-    expect(false).not.toBe(true);
+  it("debe estar habilitado el textArea", function() {
+    expect($txaMessage).not.toBeDisabled();
   });
 });
