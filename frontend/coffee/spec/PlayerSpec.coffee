@@ -1,4 +1,4 @@
-
+###
 describe "Player", () ->
 	player = undefined
 	song = undefined
@@ -78,3 +78,4 @@ describe "Player", () ->
 			expect(player.previousSong).toEqual song
 
 	return
+###

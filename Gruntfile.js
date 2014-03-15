@@ -91,7 +91,7 @@ module.exports = function(grunt) {
         options: {
           specs: ['public/js/spec/*Spec.js'],
           helpers: ['public/js/spec/*Helper.js'],
-          vendor: ['public/js/libs/jquery/dist/jquery.min.js', 'public/js/libs/jasmine-2.0.0/jasmine.js']
+          vendor: ['public/js/libs/jquery/dist/jquery.min.js', 'public/js/libs/jasmine-2.0.0/jasmine.js', 'public/js/libs/jasmine-jquery.js']
         }
       }
     }
