@@ -5,4 +5,7 @@ describe "charCount", () ->
 	it "should be true", () ->
 		expect(true).toBe true
 		return
+	it "should be false", () ->
+		expect(false).not.toBe true
+		return
 	return

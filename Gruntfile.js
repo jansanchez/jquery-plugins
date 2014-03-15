@@ -89,9 +89,22 @@ module.exports = function(grunt) {
       phantomjs: {
         src: ['public/js/src/*.js'],
         options: {
+          outfile : 'html/_SpecRunner.html',
+          host : 'http://localhost:8000/',
           specs: ['public/js/spec/*Spec.js'],
           helpers: ['public/js/spec/*Helper.js'],
           vendor: ['public/js/libs/jquery/dist/jquery.min.js', 'public/js/libs/jasmine-2.0.0/jasmine.js', 'public/js/libs/jasmine-jquery.js']
+        }
+      }
+    }
+    ,
+    connect: {
+      test: {
+        options:{
+          port: 8000,
+          hostname: 'localhost',
+          base: '.',
+          keepalive: true
         }
       }
     }
@@ -104,7 +117,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jade');
   grunt.loadNpmTasks('grunt-contrib-stylus');
   grunt.loadNpmTasks('grunt-contrib-jasmine');
-
+  grunt.loadNpmTasks('grunt-contrib-connect');
   
   // Run Default task(s).
   grunt.registerTask('html', ['jade']);
