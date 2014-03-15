@@ -89,9 +89,9 @@ module.exports = function(grunt) {
       phantomjs: {
         src: ['public/js/src/*.js'],
         options: {
-          specs: 'public/js/spec/*Spec.js',
-          helpers: 'public/js/spec/*Helper.js',
-          vendor: ['public/js/libs/jquery/dist/jquery.min.js']
+          specs: ['public/js/spec/*Spec.js'],
+          helpers: ['public/js/spec/*Helper.js'],
+          vendor: ['public/js/libs/jquery/dist/jquery.min.js', 'public/js/libs/jasmine-2.0.0/jasmine.js']
         }
       }
     }

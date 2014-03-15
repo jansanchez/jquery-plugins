@@ -5,3 +5,5 @@ beforeEach () ->
 			player = actual
 			pass : player.currentlyPlayingSong is expected and player.isPlaying
 	return
+
+#jasmine.getFixtures().fixturesPath = '../../html/fixtures'
