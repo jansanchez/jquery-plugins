@@ -10,7 +10,7 @@ module.exports = function(grunt) {
         },
         expand: true,
         cwd: 'frontend/coffee/',
-        src: ['*.coffee','!_*.coffee'],
+        src: ['**/*.coffee','!**/_*.coffee'],
         dest: 'public/js/',
         ext: '.js'
       }
@@ -20,13 +20,13 @@ module.exports = function(grunt) {
       options: {
         jshintrc : '.jshintrc'
       },
-      js: ['public/js/*.js']
+      js: ['public/js/src/*.js']
     },
     //watch
     /*echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p*/
     watch: {
       coffee: {
-        files: 'frontend/coffee/*.coffee',
+        files: 'frontend/coffee/**/*.coffee',
         tasks: ['coffee', 'jshint'],
         options: {
           interrupt: true
@@ -77,6 +77,22 @@ module.exports = function(grunt) {
           ext: '.css'
         }]
       }
+    },
+    /*
+    exec: {
+      jasmine: {
+        command: 'phantomjs public/js/libs/run-jasmine.js html/SpecRunner.html'
+      }
+    },
+    */
+    jasmine: {
+      phantomjs: {
+        src: 'public/js/src/*.js',
+        options: {
+          specs: 'public/js/spec/*Spec.js',
+          helpers: 'public/js/spec/*Helper.js'
+        }
+      }
     }
   });
 
@@ -86,9 +102,18 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-jade');
   grunt.loadNpmTasks('grunt-contrib-stylus');
+  grunt.loadNpmTasks('grunt-contrib-jasmine');
 
+  
   // Run Default task(s).
-  grunt.registerTask('default', ['coffee', 'jshint']);
+  grunt.registerTask('html', ['jade']);
+  grunt.registerTask('js', ['coffee', 'jshint']);
+  grunt.registerTask('css', ['stylus']);
+
+  //grunt.registerTask('utest2', ['exec:jasmine']);
+  grunt.registerTask('utest', ['jasmine:phantomjs']);
+
+  grunt.registerTask('default', ['html', 'js', 'css', 'utest']);
 
 
 };
