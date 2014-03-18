@@ -29,7 +29,7 @@ module.exports = function(grunt) {
         files: 'frontend/coffee/**/*.coffee',
         tasks: ['coffee', 'jshint', 'jasmine:phantomjs'],
         options: {
-          interrupt: false
+          interrupt: true
         }
       },
       jade: {
