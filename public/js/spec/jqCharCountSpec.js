@@ -7,6 +7,9 @@ describe("charCount", function() {
     $form = $('#frmStep2');
     $txaMessage = $('#txaMessage');
   });
+  it("debe existir el textArea", function() {
+    expect($txaMessage).toExist();
+  });
   it("debe estar habilitado el textArea", function() {
     expect($txaMessage).not.toBeDisabled();
   });

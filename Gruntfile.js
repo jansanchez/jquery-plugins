@@ -27,9 +27,9 @@ module.exports = function(grunt) {
     watch: {
       coffee: {
         files: 'frontend/coffee/**/*.coffee',
-        tasks: ['coffee', 'jshint'],
+        tasks: ['coffee', 'jshint', 'jasmine:phantomjs'],
         options: {
-          interrupt: true
+          interrupt: false
         }
       },
       jade: {
@@ -127,7 +127,10 @@ module.exports = function(grunt) {
   //grunt.registerTask('utest2', ['exec:jasmine']);
   grunt.registerTask('utest', ['jasmine:phantomjs']);
 
-  grunt.registerTask('default', ['html', 'js', 'css', 'utest']);
+  grunt.registerTask('watch-nojs', ['watch:jade', 'watch:stylus']);
 
+  grunt.registerTask('watch-js', ['watch:coffee']);
+
+  grunt.registerTask('default', ['html', 'css', 'js']);
 
 };
