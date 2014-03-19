@@ -1,12 +1,13 @@
 $(document).on('ready', () ->
     $('#txaMessage').charCount({
-        maxchars: 100,
+        maxchars: 50,
         charsCounter: '#charCount'
     })
-    $('#txaMessage2').charCount({
-        maxchars: 200,
-        charsCounter: '#charCount2'
-    })
+
+    #$('#txaMessage2').charCount({
+        #maxchars: 200,
+        #charsCounter: '#charCount2'
+    #})
     console.log('dom cargado!')
     return
 )

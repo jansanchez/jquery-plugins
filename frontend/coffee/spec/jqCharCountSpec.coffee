@@ -26,6 +26,9 @@ describe "charCount", () ->
     it "debe tener definido un elemento DOM para contar los caracteres", () ->
         expect($charsCounter).toExist()
         return
+    it "debe bloquear el ingreso de caracteres cuando se encuentre en el límite máximo de caracteres", () ->
+        expect(true).toBe(false)
+        return
     it "Debería registrar el número de caracteres actualmente usados y el número de caracteres disponibles", () ->
         expect(true).toBe(false)
         return

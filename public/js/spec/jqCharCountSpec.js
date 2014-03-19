@@ -25,6 +25,9 @@ describe("charCount", function() {
   it("debe tener definido un elemento DOM para contar los caracteres", function() {
     expect($charsCounter).toExist();
   });
+  it("debe bloquear el ingreso de caracteres cuando se encuentre en el límite máximo de caracteres", function() {
+    expect(true).toBe(false);
+  });
   it("Debería registrar el número de caracteres actualmente usados y el número de caracteres disponibles", function() {
     expect(true).toBe(false);
   });

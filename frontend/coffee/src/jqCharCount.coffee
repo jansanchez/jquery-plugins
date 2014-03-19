@@ -15,11 +15,13 @@ License: http://www.opensource.org/licenses/mit-license.php
         #console.log options
         @options = options
         @$el = options.$el
+        @chars = 0
         _this = @
         @setMaxChars()
         @setElementForCharCount()
         @subscribeEvents()
-        @counterChar()        
+        @counterChar()
+        @stopInsertion()
         return
     charCount::setMaxChars = () ->
         @$el.attr('data-maxchars', @options.maxchars)
@@ -28,17 +30,25 @@ License: http://www.opensource.org/licenses/mit-license.php
         @options.$charsCounter = $(@options.charsCounter)
         return
     charCount::counterChar = () ->
+        #console.log 'ejecutando counterChar'
         _this.current_value = $.trim(_this.$el.val())
         _this.words = _this.current_value.replace(/\s+/gi, ' ').split(' ').length
         _this.chars = _this.current_value.length
         if !_this.chars
             _this.chars = 0
             _this.words = 0
-        _this.setCharsCounter()
+        if (_this.chars <= _this.options.maxchars)
+            _this.setCharsCounter()
+        else
+            console.log  _this.chars + '>=' + _this.options.maxchars
+            console.log 'aqui deberia dejar de ingresar texto'
         return
     charCount::setCharsCounter = () ->
         @options.$charsCounter.html('Estas usando ' + @chars + ' caracteres de ' + @options.maxchars + '.') 
         return
+    charCount::stopInsertion = () ->
+        return
+    charCount::subscribeEvents = () ->
     charCount::subscribeEvents = () ->
         @$el.on('input', @counterChar)
         return

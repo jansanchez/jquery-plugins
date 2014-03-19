@@ -15,11 +15,13 @@ License: http://www.opensource.org/licenses/mit-license.php
   charCount = function(options) {
     this.options = options;
     this.$el = options.$el;
+    this.chars = 0;
     _this = this;
     this.setMaxChars();
     this.setElementForCharCount();
     this.subscribeEvents();
     this.counterChar();
+    this.stopInsertion();
   };
   charCount.prototype.setMaxChars = function() {
     this.$el.attr('data-maxchars', this.options.maxchars);
@@ -35,11 +37,18 @@ License: http://www.opensource.org/licenses/mit-license.php
       _this.chars = 0;
       _this.words = 0;
     }
-    _this.setCharsCounter();
+    if (_this.chars <= _this.options.maxchars) {
+      _this.setCharsCounter();
+    } else {
+      console.log(_this.chars + '>=' + _this.options.maxchars);
+      console.log('aqui deberia dejar de ingresar texto');
+    }
   };
   charCount.prototype.setCharsCounter = function() {
     this.options.$charsCounter.html('Estas usando ' + this.chars + ' caracteres de ' + this.options.maxchars + '.');
   };
+  charCount.prototype.stopInsertion = function() {};
+  charCount.prototype.subscribeEvents = function() {};
   charCount.prototype.subscribeEvents = function() {
     this.$el.on('input', this.counterChar);
   };
