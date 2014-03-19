@@ -7,14 +7,24 @@ License: http://www.opensource.org/licenses/mit-license.php
 
 (function($) {
   var charCount, defaultSettings;
-  defaultSettings = {};
+  defaultSettings = {
+    maxchars: 150,
+    charsCounter: '#charCount'
+  };
   charCount = function(options) {
     console.log(options);
     this.options = options;
-    this.rand();
+    this.setMaxChars();
+    this.setCharsCounter();
   };
   charCount.prototype.rand = function() {
     console.log('ejecutando random: ' + this.options.$el.val());
+  };
+  charCount.prototype.setMaxChars = function() {
+    this.options.$el.attr('data-maxchars', this.options.maxchars);
+  };
+  charCount.prototype.setCharsCounter = function() {
+    this.options.$charsCounter = $(this.options.charsCounter);
   };
   $.fn.charCount = function(params) {
     var self;

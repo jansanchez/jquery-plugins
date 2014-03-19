@@ -7,14 +7,23 @@ License: http://www.opensource.org/licenses/mit-license.php
 
 (($) ->
     defaultSettings = {
+        maxchars: 150,
+        charsCounter: '#charCount'
     }
     charCount = (options) ->
         console.log options
         this.options = options
-        @rand()
+        @setMaxChars()
+        @setCharsCounter()
         return
     charCount::rand = () ->
         console.log 'ejecutando random: ' + @options.$el.val()
+        return
+    charCount::setMaxChars = () ->
+        @options.$el.attr('data-maxchars', @options.maxchars)
+        return
+    charCount::setCharsCounter = () ->
+        @options.$charsCounter = $(@options.charsCounter)
         return
     $.fn.charCount = (params) ->
         if (typeof params is "undefined" or params.constructor is Object)

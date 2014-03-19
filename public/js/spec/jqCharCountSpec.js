@@ -1,12 +1,17 @@
 describe("charCount", function() {
-  var $form, $txaMessage;
-  $form = null;
+  var $charsCounter, $txaMessage, charsCounter, maxchars;
+  maxchars = 100;
+  charsCounter = '#charCount';
   $txaMessage = null;
+  $charsCounter = null;
   beforeEach(function() {
     loadFixtures('jqCharCountContent.html');
-    $form = $('#frmStep2');
     $txaMessage = $('#txaMessage');
-    $txaMessage.charCount();
+    $charsCounter = $(charsCounter);
+    $txaMessage.charCount({
+      maxchars: maxchars,
+      charsCounter: charsCounter
+    });
   });
   it("debe existir el textArea en el DOM", function() {
     expect($txaMessage).toExist();
@@ -14,7 +19,10 @@ describe("charCount", function() {
   it("debe estar habilitado el textArea para editar", function() {
     expect($txaMessage).not.toBeDisabled();
   });
-  it("debe tener el texto abc dentro", function() {
-    expect($txaMessage).toHaveValue('abc');
+  it("debe tener definido un numero maximo de caracteres", function() {
+    expect($txaMessage).toHaveAttr('data-maxchars', maxchars.toString());
+  });
+  it("debe tener definido un elemento DOM para contar los caracteres", function() {
+    expect($charsCounter).toExist();
   });
 });
