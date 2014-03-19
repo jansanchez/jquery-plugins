@@ -1,10 +1,10 @@
 $(document).on('ready', function() {
   $('#txaMessage').charCount({
-    maxchars: 100,
+    maxchars: 104,
     charsCounter: '#charCount'
   });
   $('#txaMessage2').charCount({
-    maxchars: 200,
+    maxchars: 236,
     charsCounter: '#charCount2'
   });
   console.log('dom cargado!');

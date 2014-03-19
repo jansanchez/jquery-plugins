@@ -6,25 +6,42 @@ License: http://www.opensource.org/licenses/mit-license.php
 */
 
 (function($) {
-  var charCount, defaultSettings;
+  var charCount, defaultSettings, _this;
   defaultSettings = {
     maxchars: 150,
     charsCounter: '#charCount'
   };
+  _this = null;
   charCount = function(options) {
-    console.log(options);
     this.options = options;
+    this.$el = options.$el;
+    _this = this;
     this.setMaxChars();
-    this.setCharsCounter();
-  };
-  charCount.prototype.rand = function() {
-    console.log('ejecutando random: ' + this.options.$el.val());
+    this.setElementForCharCount();
+    this.subscribeEvents();
+    this.counterChar();
   };
   charCount.prototype.setMaxChars = function() {
-    this.options.$el.attr('data-maxchars', this.options.maxchars);
+    this.$el.attr('data-maxchars', this.options.maxchars);
+  };
+  charCount.prototype.setElementForCharCount = function() {
+    this.options.$charsCounter = $(this.options.charsCounter);
+  };
+  charCount.prototype.counterChar = function() {
+    _this.current_value = $.trim(_this.$el.val());
+    _this.words = _this.current_value.replace(/\s+/gi, ' ').split(' ').length;
+    _this.chars = _this.current_value.length;
+    if (!_this.chars) {
+      _this.chars = 0;
+      _this.words = 0;
+    }
+    _this.setCharsCounter();
   };
   charCount.prototype.setCharsCounter = function() {
-    this.options.$charsCounter = $(this.options.charsCounter);
+    this.options.$charsCounter.html('Estas usando ' + this.chars + ' caracteres de ' + this.options.maxchars + '.');
+  };
+  charCount.prototype.subscribeEvents = function() {
+    this.$el.on('input', this.counterChar);
   };
   $.fn.charCount = function(params) {
     var self;

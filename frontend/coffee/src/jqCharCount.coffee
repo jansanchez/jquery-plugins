@@ -10,21 +10,39 @@ License: http://www.opensource.org/licenses/mit-license.php
         maxchars: 150,
         charsCounter: '#charCount'
     }
+    _this = null
     charCount = (options) ->
-        console.log options
-        this.options = options
+        #console.log options
+        @options = options
+        @$el = options.$el
+        _this = @
         @setMaxChars()
-        @setCharsCounter()
-        return
-    charCount::rand = () ->
-        console.log 'ejecutando random: ' + @options.$el.val()
+        @setElementForCharCount()
+        @subscribeEvents()
+        @counterChar()        
         return
     charCount::setMaxChars = () ->
-        @options.$el.attr('data-maxchars', @options.maxchars)
+        @$el.attr('data-maxchars', @options.maxchars)
         return
-    charCount::setCharsCounter = () ->
+    charCount::setElementForCharCount = () ->
         @options.$charsCounter = $(@options.charsCounter)
         return
+    charCount::counterChar = () ->
+        _this.current_value = $.trim(_this.$el.val())
+        _this.words = _this.current_value.replace(/\s+/gi, ' ').split(' ').length
+        _this.chars = _this.current_value.length
+        if !_this.chars
+            _this.chars = 0
+            _this.words = 0
+        _this.setCharsCounter()
+        return
+    charCount::setCharsCounter = () ->
+        @options.$charsCounter.html('Estas usando ' + @chars + ' caracteres de ' + @options.maxchars + '.') 
+        return
+    charCount::subscribeEvents = () ->
+        @$el.on('input', @counterChar)
+        return
+
     $.fn.charCount = (params) ->
         if (typeof params is "undefined" or params.constructor is Object)
             self = this

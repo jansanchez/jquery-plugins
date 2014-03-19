@@ -26,4 +26,10 @@ describe "charCount", () ->
     it "debe tener definido un elemento DOM para contar los caracteres", () ->
         expect($charsCounter).toExist()
         return
+    it "Debería registrar el número de caracteres actualmente usados y el número de caracteres disponibles", () ->
+        expect(true).toBe(false)
+        return
+    it "Debería poder usar múltiples instancias del plugin", () ->
+        expect(true).toBe(false)
+        return
     return
