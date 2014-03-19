@@ -1,6 +1,7 @@
 ###*
 charCount v0.1.0 - jQuery plugin charCount
 (c) 2014 - @jansanchez
+ie9+
 License: http://www.opensource.org/licenses/mit-license.php
 ###
 

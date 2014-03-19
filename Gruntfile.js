@@ -33,7 +33,7 @@ module.exports = function(grunt) {
         }
       },
       jade: {
-        files: ['frontend/jade/*.jade'],
+        files: ['frontend/jade/**/*.jade'],
         tasks: ['jade'],
         options: {
           pretty: true,
@@ -41,7 +41,7 @@ module.exports = function(grunt) {
         }
       },
       stylus: {
-        files: ['frontend/styl/*.styl'],
+        files: ['frontend/styl/**/*.styl'],
         tasks: ['stylus'],
         options: {
           interrupt: true
