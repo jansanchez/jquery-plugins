@@ -16,12 +16,12 @@ License: http://www.opensource.org/licenses/mit-license.php
     this.options = options;
     this.$el = options.$el;
     this.chars = 0;
+    this.words = 0;
     _this = this;
     this.setMaxChars();
     this.setElementForCharCount();
     this.subscribeEvents();
     this.counterChar();
-    this.stopInsertion();
   };
   charCount.prototype.setMaxChars = function() {
     this.$el.attr('data-maxchars', this.options.maxchars);
@@ -29,7 +29,11 @@ License: http://www.opensource.org/licenses/mit-license.php
   charCount.prototype.setElementForCharCount = function() {
     this.options.$charsCounter = $(this.options.charsCounter);
   };
-  charCount.prototype.counterChar = function() {
+  charCount.prototype.counterChar = function(e) {
+    console.log(e);
+    if (e) {
+      console.log(e.keyCode);
+    }
     _this.current_value = $.trim(_this.$el.val());
     _this.words = _this.current_value.replace(/\s+/gi, ' ').split(' ').length;
     _this.chars = _this.current_value.length;
@@ -37,20 +41,16 @@ License: http://www.opensource.org/licenses/mit-license.php
       _this.chars = 0;
       _this.words = 0;
     }
-    if (_this.chars <= _this.options.maxchars) {
-      _this.setCharsCounter();
-    } else {
-      console.log(_this.chars + '>=' + _this.options.maxchars);
-      console.log('aqui deberia dejar de ingresar texto');
+    if (_this.chars >= _this.options.maxchars) {
+      _this.$el.val(_this.$el.val().substring(0, _this.options.maxchars));
     }
+    _this.setCharsCounter();
   };
   charCount.prototype.setCharsCounter = function() {
     this.options.$charsCounter.html('Estas usando ' + this.chars + ' caracteres de ' + this.options.maxchars + '.');
   };
-  charCount.prototype.stopInsertion = function() {};
-  charCount.prototype.subscribeEvents = function() {};
   charCount.prototype.subscribeEvents = function() {
-    this.$el.on('input', this.counterChar);
+    this.$el.on('keyup', this.counterChar);
   };
   $.fn.charCount = function(params) {
     var self;
