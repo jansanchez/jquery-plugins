@@ -8,7 +8,7 @@ $(document).on('ready', () ->
         #maxchars: 200,
         #charsCounter: '#charCount2'
     #})
-    console.log('dom cargado!')
+    #console.log('dom cargado!')
     return
 )
 

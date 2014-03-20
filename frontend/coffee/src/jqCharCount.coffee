@@ -17,34 +17,31 @@ License: http://www.opensource.org/licenses/mit-license.php
         @$el = options.$el
         @chars = 0
         @words = 0
+        @dom = {}
         _this = @
+        @setDom()
         @setMaxChars()
-        @setElementForCharCount()
         @subscribeEvents()
         @counterChar()
         return
+    charCount::setDom = () ->
+        @dom.charsCounter = $(@options.charsCounter)
+        return
     charCount::setMaxChars = () ->
+        @currentValue = @$el.val()
+        @chars = @currentValue.length
         @$el.attr('data-maxchars', @options.maxchars)
         return
-    charCount::setElementForCharCount = () ->
-        @options.$charsCounter = $(@options.charsCounter)
-        return
     charCount::counterChar = (e) ->
-        console.log e
-        if e
-            console.log e.keyCode
-        _this.current_value = $.trim(_this.$el.val())
-        _this.words = _this.current_value.replace(/\s+/gi, ' ').split(' ').length
-        _this.chars = _this.current_value.length
-        if !_this.chars
-            _this.chars = 0
-            _this.words = 0
+        #_this.words = _this.currentValue.replace(/\s+/gi, ' ').split(' ').length
         if (_this.chars >= _this.options.maxchars)
             _this.$el.val(_this.$el.val().substring(0, _this.options.maxchars))
         _this.setCharsCounter()
         return
     charCount::setCharsCounter = () ->
-        @options.$charsCounter.html('Estas usando ' + @chars + ' caracteres de ' + @options.maxchars + '.') 
+        @currentValue = @$el.val()
+        @chars = @currentValue.length
+        @dom.charsCounter.html('Estas usando ' + @chars + ' caracteres de ' + @options.maxchars + '.')
         return
     charCount::subscribeEvents = () ->
         @$el.on('keyup', @counterChar)

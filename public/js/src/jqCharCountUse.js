@@ -3,5 +3,4 @@ $(document).on('ready', function() {
     maxchars: 50,
     charsCounter: '#charCount'
   });
-  console.log('dom cargado!');
 });
