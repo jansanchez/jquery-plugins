@@ -14,37 +14,42 @@ License: http://www.opensource.org/licenses/mit-license.php
   _this = null;
   charCount = function(options) {
     this.options = options;
-    this.$el = options.$el;
+    this.dom = {};
     this.chars = 0;
     this.words = 0;
-    this.dom = {};
-    _this = this;
+    this.currentValue = '';
     this.setDom();
     this.setMaxChars();
     this.subscribeEvents();
-    this.counterChar();
+    this.getCharsCounter();
+    _this = this;
   };
   charCount.prototype.setDom = function() {
+    this.dom.el = this.options.el;
     this.dom.charsCounter = $(this.options.charsCounter);
   };
   charCount.prototype.setMaxChars = function() {
-    this.currentValue = this.$el.val();
-    this.chars = this.currentValue.length;
-    this.$el.attr('data-maxchars', this.options.maxchars);
+    this.chars = this.dom.el.val().length;
+    this.dom.el.attr('data-maxchars', this.options.maxchars);
   };
-  charCount.prototype.counterChar = function(e) {
-    if (_this.chars >= _this.options.maxchars) {
-      _this.$el.val(_this.$el.val().substring(0, _this.options.maxchars));
+  charCount.prototype.getCharsCounter = function() {
+    if (this.chars >= this.options.maxchars) {
+      this.dom.el.val(this.dom.el.val().substring(0, this.options.maxchars));
     }
-    _this.setCharsCounter();
+    this.countAndShowCharsCounter();
   };
-  charCount.prototype.setCharsCounter = function() {
-    this.currentValue = this.$el.val();
+  charCount.prototype.countAndShowCharsCounter = function() {
+    this.currentValue = this.dom.el.val();
     this.chars = this.currentValue.length;
     this.dom.charsCounter.html('Estas usando ' + this.chars + ' caracteres de ' + this.options.maxchars + '.');
   };
   charCount.prototype.subscribeEvents = function() {
-    this.$el.on('keyup', this.counterChar);
+    this.dom.el.on('keyup', this.events.keyUp);
+  };
+  charCount.prototype.events = {
+    keyUp: function(e) {
+      _this.getCharsCounter();
+    }
   };
   $.fn.charCount = function(params) {
     var self;
@@ -54,7 +59,7 @@ License: http://www.opensource.org/licenses/mit-license.php
         var everyElement, settings;
         everyElement = $(this);
         settings = $.extend({
-          $el: everyElement
+          el: everyElement
         }, defaultSettings, params || {});
         return new charCount(settings);
       });

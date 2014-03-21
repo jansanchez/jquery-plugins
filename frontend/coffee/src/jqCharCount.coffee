@@ -14,38 +14,44 @@ License: http://www.opensource.org/licenses/mit-license.php
     charCount = (options) ->
         #console.log options
         @options = options
-        @$el = options.$el
+        @dom = {}
         @chars = 0
         @words = 0
-        @dom = {}
-        _this = @
+        @currentValue = ''
         @setDom()
         @setMaxChars()
         @subscribeEvents()
-        @counterChar()
+        @getCharsCounter()
+        _this = @
         return
     charCount::setDom = () ->
+        @dom.el = @options.el
         @dom.charsCounter = $(@options.charsCounter)
         return
     charCount::setMaxChars = () ->
-        @currentValue = @$el.val()
-        @chars = @currentValue.length
-        @$el.attr('data-maxchars', @options.maxchars)
+        @chars = @dom.el.val().length
+        @dom.el.attr('data-maxchars', @options.maxchars)
+        #console.log(@dom.el.attr('data-maxchars'))
         return
-    charCount::counterChar = (e) ->
-        #_this.words = _this.currentValue.replace(/\s+/gi, ' ').split(' ').length
-        if (_this.chars >= _this.options.maxchars)
-            _this.$el.val(_this.$el.val().substring(0, _this.options.maxchars))
-        _this.setCharsCounter()
+    charCount::getCharsCounter = () ->
+        if (@chars >= @options.maxchars)
+            @dom.el.val(@dom.el.val().substring(0, @options.maxchars))
+        @countAndShowCharsCounter()
         return
-    charCount::setCharsCounter = () ->
-        @currentValue = @$el.val()
+    charCount::countAndShowCharsCounter = () ->
+        @currentValue = @dom.el.val()
         @chars = @currentValue.length
         @dom.charsCounter.html('Estas usando ' + @chars + ' caracteres de ' + @options.maxchars + '.')
         return
     charCount::subscribeEvents = () ->
-        @$el.on('keyup', @counterChar)
+        @dom.el.on('keyup', @events.keyUp)
         return
+    charCount::events = {
+        keyUp : (e) ->
+            #@words = @currentValue.replace(/\s+/gi, ' ').split(' ').length
+            _this.getCharsCounter()
+            return
+    }
 
     $.fn.charCount = (params) ->
         if (typeof params is "undefined" or params.constructor is Object)
@@ -53,7 +59,7 @@ License: http://www.opensource.org/licenses/mit-license.php
             return self.each( ()->
                 everyElement = $(this)
                 #console.log(everyElement)
-                settings = $.extend({$el: everyElement}, defaultSettings, params || {})
+                settings = $.extend({el: everyElement}, defaultSettings, params || {})
                 return new charCount(settings)
             )
         else

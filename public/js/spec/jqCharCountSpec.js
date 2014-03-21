@@ -25,11 +25,11 @@ describe("charCount", function() {
   it("debe estar habilitado el textArea para editar", function() {
     expect($txaMessage).not.toBeDisabled();
   });
-  it("debe tener definido un numero maximo de caracteres", function() {
-    expect($txaMessage).toHaveAttr('data-maxchars', maxchars.toString());
-  });
   it("debe tener definido un elemento DOM para contar los caracteres", function() {
     expect($charsCounter).toExist();
+  });
+  it("debe tener definido un numero maximo de caracteres", function() {
+    expect($txaMessage).toHaveAttr('data-maxchars', maxchars.toString());
   });
   it("debe quitar los caracteres que excedan el numero maximo de caracteres", function() {
     $txaMessage.val(message);

@@ -1,4 +1,5 @@
 $(document).on('ready', () ->
+
     $('#txaMessage').charCount({
         maxchars: 50,
         charsCounter: '#charCount'

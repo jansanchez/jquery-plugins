@@ -25,11 +25,12 @@ describe "charCount", () ->
     it "debe estar habilitado el textArea para editar", () ->
         expect($txaMessage).not.toBeDisabled()
         return
-    it "debe tener definido un numero maximo de caracteres", () ->
-        expect($txaMessage).toHaveAttr('data-maxchars', maxchars.toString())
-        return
     it "debe tener definido un elemento DOM para contar los caracteres", () ->
         expect($charsCounter).toExist()
+        return
+    it "debe tener definido un numero maximo de caracteres", () ->
+        #console.log $txaMessage.attr('data-maxchars')
+        expect($txaMessage).toHaveAttr('data-maxchars', maxchars.toString())
         return
     it "debe quitar los caracteres que excedan el numero maximo de caracteres", () ->
         $txaMessage.val(message)
@@ -44,3 +45,5 @@ describe "charCount", () ->
         pending()
         return
     return
+
+
