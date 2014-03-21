@@ -10,14 +10,10 @@ describe("charCount", function() {
     loadFixtures('jqCharCountContent.html');
     $txaMessage = $('#txaMessage');
     $charsCounter = $(charsCounter);
-    pluginSpy = spyOn($.fn, "charCount");
     $txaMessage.charCount({
       maxchars: maxchars,
       charsCounter: charsCounter
     });
-  });
-  it("debe llamar correctamente una instancia del plugin", function() {
-    expect(pluginSpy).toHaveBeenCalled();
   });
   it("debe existir el textArea en el DOM", function() {
     expect($txaMessage).toExist();

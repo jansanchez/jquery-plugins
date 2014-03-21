@@ -9,16 +9,16 @@ describe "charCount", () ->
         loadFixtures('jqCharCountContent.html')
         $txaMessage = $('#txaMessage')
         $charsCounter = $(charsCounter)
-        pluginSpy = spyOn($.fn, "charCount")
+        #pluginSpy = spyOn($.fn, "charCount")
         $txaMessage.charCount({
             maxchars: maxchars,
             charsCounter: charsCounter
         })
         return
 
-    it "debe llamar correctamente una instancia del plugin", () ->
-        expect(pluginSpy).toHaveBeenCalled()
-        return
+    #it "debe llamar correctamente una instancia del plugin", () ->
+        #expect(pluginSpy).toHaveBeenCalled()
+        #return
     it "debe existir el textArea en el DOM", () ->
         expect($txaMessage).toExist()
         return
