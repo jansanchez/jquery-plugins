@@ -33,6 +33,7 @@ License: http://www.opensource.org/licenses/mit-license.php
     this.dom.el.attr('data-maxchars', this.options.maxchars);
   };
   charCount.prototype.getCharsCounter = function() {
+    this.chars = this.dom.el.val().length;
     if (this.chars >= this.options.maxchars) {
       this.dom.el.val(this.dom.el.val().substring(0, this.options.maxchars));
     }

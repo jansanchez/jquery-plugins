@@ -1,6 +1,8 @@
 $(document).on('ready', function() {
-  $('#txaMessage').charCount({
+  var instance;
+  instance = $('#txaMessage').charCount({
     maxchars: 50,
     charsCounter: '#charCount'
   });
+  window.plugin = instance.data('instance');
 });

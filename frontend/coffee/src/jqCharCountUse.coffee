@@ -1,9 +1,11 @@
 $(document).on('ready', () ->
 
-    $('#txaMessage').charCount({
+    instance = $('#txaMessage').charCount({
         maxchars: 50,
         charsCounter: '#charCount'
     })
+
+    window.plugin = instance.data('instance')
 
     #$('#txaMessage2').charCount({
         #maxchars: 200,

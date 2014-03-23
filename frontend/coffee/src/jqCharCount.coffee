@@ -34,6 +34,7 @@ License: http://www.opensource.org/licenses/mit-license.php
         #console.log(@dom.el.attr('data-maxchars'))
         return
     charCount::getCharsCounter = () ->
+        @chars = @dom.el.val().length
         if (@chars >= @options.maxchars)
             @dom.el.val(@dom.el.val().substring(0, @options.maxchars))
         @countAndShowCharsCounter()
