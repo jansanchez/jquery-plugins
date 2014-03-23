@@ -56,12 +56,14 @@ License: http://www.opensource.org/licenses/mit-license.php
     if (typeof params === "undefined" || params.constructor === Object) {
       self = this;
       return self.each(function() {
-        var everyElement, settings;
+        var everyElement, instance, settings;
         everyElement = $(this);
         settings = $.extend({
           el: everyElement
         }, defaultSettings, params || {});
-        return new charCount(settings);
+        instance = new charCount(settings);
+        settings.el.data('instance', instance);
+        return instance;
       });
     } else {
       $.error("El parámetro proporcionado " + params + " esta mal declarado o no es un objeto");

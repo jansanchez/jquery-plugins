@@ -60,7 +60,9 @@ License: http://www.opensource.org/licenses/mit-license.php
                 everyElement = $(this)
                 #console.log(everyElement)
                 settings = $.extend({el: everyElement}, defaultSettings, params || {})
-                return new charCount(settings)
+                instance = new charCount(settings)
+                settings.el.data('instance', instance)
+                return instance
             )
         else
             $.error "El parámetro proporcionado " + params + " esta mal declarado o no es un objeto"
