@@ -18,6 +18,11 @@ describe("charCount", function() {
     });
     plugin = instance.data('instance');
   });
+  it("debe llamar correctamente una instancia del plugin", function() {
+    pluginSpy = spyOn($.fn, "charCount");
+    $txaMessage.charCount();
+    expect(pluginSpy).toHaveBeenCalled();
+  });
   it("debe existir el textArea en el DOM", function() {
     expect(plugin.dom.el).toExist();
   });
@@ -30,17 +35,23 @@ describe("charCount", function() {
   it("debe tener definido un numero maximo de caracteres", function() {
     expect(plugin.dom.el).toHaveAttr('data-maxchars', maxchars.toString());
   });
-  it("debe quitar los caracteres que excedan el numero maximo de caracteres", function() {
-    plugin.dom.el.val(message);
-    plugin.getCharsCounter();
-    expect(plugin.dom.el.val().length).not.toBeGreaterThan(maxchars);
-  });
-  it("Debería registrar el número de caracteres actualmente usados y el número de caracteres disponibles", function() {
-    expect(true).toBe(false);
-    pending();
-  });
   it("Debería poder usar múltiples instancias del plugin", function() {
     expect(true).toBe(false);
     pending();
+  });
+  describe("al ingresar un texto mayor al limite fijado", function() {
+    beforeEach(function() {
+      plugin.dom.el.val(message);
+    });
+    it("debe quitar los caracteres que excedan el numero maximo de caracteres", function() {
+      plugin.getCharsCounter();
+      expect(plugin.dom.el.val().length).not.toBeGreaterThan(maxchars);
+    });
+    it("Debería registrar el número de caracteres actualmente usados y el número de caracteres disponibles", function() {
+      plugin.getCharsCounter();
+      expect(plugin.dom.el.val().length).not.toBeGreaterThan(maxchars);
+      expect(plugin.dom.charsCounter).toContainText(plugin.dom.el.val().length);
+      expect(plugin.dom.charsCounter).toContainText(maxchars);
+    });
   });
 });
