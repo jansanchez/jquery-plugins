@@ -7,10 +7,13 @@ $(document).on('ready', () ->
 
     window.plugin = instance.data('instance')
 
-    #$('#txaMessage2').charCount({
-        #maxchars: 200,
-        #charsCounter: '#charCount2'
-    #})
+    instance2 = $('#txaMessage2').charCount({
+        maxchars: 40,
+        charsCounter: '#charCount2'
+    })
+
+    window.plugin2 = instance2.data('instance')
+
     #console.log('dom cargado!')
     return
 )
